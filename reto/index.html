@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PROYECTO</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+  <link href="style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
+</head>
+
+<body onload='iniciarSesion()'>
+  <div class="container-fluid text-center" id="contenedor">
+    <div class="row py-1">
+      <div class="mx-auto" id="Bienvenido"></div>
+      <div class="col-4 mx-auto" id="botones"><button id="salir" style="display: none;">Cerrar sesion</button><img
+          class="img-fluid" src="Imagenes/ibex35.png" alt="Logo del Ibex35"></div>
+    </div>
+    <div class="row">
+      <div id="empresas"
+        class="cont bg-light.bg-gradient border border-dark col-lg-8 col-md-8 col-md-10 col-sm-10 col-12 mx-auto">
+        <img class="empresa" id="Inditex" src="Imagenes/Inditex.png" alt="Logo de Inditex">
+        <img class="empresa" id="Santander" src="Imagenes/Santander.png" alt="Logo de Santander">
+        <img class="empresa" id="BBVA" src="Imagenes/BBVA.png" alt="Logo de BBVA">
+        <img class="empresa" id="Caixa" src="Imagenes/Caixa.png" alt="Logo de Caixa">
+        <img class="empresa" id="Cellnex" src="Imagenes/Cellnex.png" alt="Logo de Cellnex">
+        <img class="empresa" id="Repsol" src="Imagenes/Repsol.png" alt="Logo de Repsol">
+        <img class="empresa" id="Iberdrola" src="Imagenes/Iberdrola.png" alt="Logo de Iberdrola">
+        <img class="empresa" id="Ferrovial" src="Imagenes/Ferrovial.png" alt="Logo de Ferrovial">
+        <img class="empresa" id="Naturgy" src="Imagenes/Naturgy.png" alt="Logo de Naturgy">
+        <img class="empresa" id="Telefonica" src="Imagenes/Telefonica.png" alt="Logo de Telefonica">
+      </div>
+    </div>
+    <div class="row py-3">
+      <div id="selecEmpresas"
+        class="cont px-1 col-lg-8 col-md-8 col-md-10 col-sm-10 col-12 mx-auto border border-dark ">
+      </div>
+    </div>
+    <div class="row">
+
+    </div>
+    <div id="dCharts" class="row">
+    </div>
+    <div class="col-12 py-5" style="display: none;" id="boton">
+      <button type="button" class="btn btn-info btn-lg btn-outline-dark d-none" id="volver">Volver</button>
+      <button type="button" class="btn btn-info btn-lg btn-outline-dark d-inline" id="verEmpresas">Ver Empresas</button>
+    </div>
+  </div>
+
+  <div class="login" id="form" style="display: none;">
+    <div class="loguear bg-dark" id="loginF">
+      <p>Inicia Sesion o Registrate</p>
+      <nav class="btn-group" role="group">
+        <button class="btn btn-default btn btn-success" id="login">Login</button>
+        <button class="btn btn-default btn btn-primary" id="registrarse">Registrarse</button>
+      </nav>
+      <p id="error"></p>
+      <form class="login-form" id="loguear">
+        <label >Email
+        <input type="email" placeholder="email" name="email"required /></label>
+        <label >Contraseña
+        <input type="password" placeholder="password" name="password" required /></label>
+        <input type="submit" value="Iniciar Sesion">
+        <p id="inicio"></p>
+      </form>
+    </div>
+
+    <div class="registrar bg-dark" id="formR" style="display: none;">
+      <p>Registrate </p>
+      <nav class="btn-group" role="group">
+        <button class="btn btn-default btn btn-primary" id="Loguearse">Login</button>
+        <button class="btn btn-default btn btn-success" id="registrarse">Registrarse</button>
+      </nav>
+
+      <p id="registrado"></p>
+      <form id="registrar">
+        <label >Nombre
+        <input name="name" id="name" type="text" placeholder="nombre"></label>
+        <label>Email
+        <input name="email" id="email" type="email" placeholder="email" required/></label>
+        <label>Contraseña
+        <input name="password" id="password" type="password" placeholder="contraseña" pattern=".{6,}"
+          title="La contraseña debe tener al menos 6 caracteres"></label>
+        <input type="submit" value="registrar">
+      </form>
+    </div>
+  </div>
+
+  <div id="myModal" class="modal">
+    <div id="container" class="modal-content container">
+    </div>
+  </div>
+
+</body>
+<script src="sesion.js"></script>
+<script src="Datos.js"></script>
+</html>
